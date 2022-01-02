@@ -10,6 +10,93 @@
   </head>
 
   <body>
+    <header>
+      <div class="logo-nav">
+        <div class="logo">
+          <%= link_to root_path, class:"link_to" do %>
+          <h1>まちコミ</h1>
+          <% end %>
+          <style>
+            .link_to:hover{
+              text-decoration: none;
+            }
+          </style>
+        </div>
+
+        <div class="flash">
+          <p class="notice"><%= notice %></p>
+          <style>
+            .notice{
+              color:white;
+              margin-top:60px;
+            }
+          </style>
+        </div>
+
+        <div class="nav-right">
+          <% if user_signed_in? %>
+            <div class="nav-list">
+              <%= link_to "投稿一覧", posts_path, class:"btn btn-light" %>
+              <%= link_to "街のコラム", columns_path, class:"btn btn-light" %>
+              <%= link_to "マイページ", users_my_page_path, class:"btn btn-light" %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-light",style:"margin-left:20px" %>
+            </div>
+          <% elsif admin_signed_in? %>
+            <div class="nav-list">
+              <%= link_to "コラム一覧", admin_columns_path, class:"btn btn-light" %>
+              <%= link_to "ユーザー一覧", admin_users_path, class:"btn btn-light" %>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-light",style:"margin-left:20px" %>
+            </div>
+          <% else %>
+            <div class="nav-list">
+              <%= link_to "新規登録", new_admin_registration_path, class:"btn btn-light" %>
+              <%= link_to "ログイン", new_admin_session_path, class:"btn btn-light" %>
+              <%= link_to "投稿一覧", posts_path, class:"btn btn-light" %>
+              <%= link_to "街のコラム", columns_path, method: :delete, class:"btn btn-light",style:"margin-left:20px" %>
+            </div>
+          <% end %>
+
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </header>
+
+      <style>
+      header{
+        width:100%;
+        background-color:#f7b8b2;
+      }
+
+      .logo-nav{
+        display:flex;
+      }
+
+      .nav-right{
+        margin:0 0 0 auto;
+      }
+
+      .nav-list{
+        margin:20px;
+      }
+
+      h1{
+        margin:50px 50px 30px 20px;
+        color:white;
+
+      }
+
+      .d-flex{
+        width:300px;
+        float: right;
+        margin:0 20px 10px 0;
+      }
+
+
+      </style>
+
     <%= yield %>
   </body>
 </html>

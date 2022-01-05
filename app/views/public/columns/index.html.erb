@@ -1,2 +1,14 @@
-<h1>Public::Columns#index</h1>
-<p>Find me in app/views/public/columns/index.html.erb</p>
+<container>
+  <div class=“row”>
+    <div class=“col-lg-12 mx-auto”>
+      <h1>コラム一覧</h1>
+      <%= @columns.each do |column| %>
+        <% link_to column_path(column_id) %>
+          <%= attachment_image_tag column, :image %>
+          <%= column.name %>
+        <% end %>
+        <%= column.text %>
+      <% end %>
+    </div>
+  </div>
+</container>

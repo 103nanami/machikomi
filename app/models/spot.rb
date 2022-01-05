@@ -1,4 +1,4 @@
 class Spot < ApplicationRecord
 
-  belongs_to :posts
+  #belongs_to :posts
 end

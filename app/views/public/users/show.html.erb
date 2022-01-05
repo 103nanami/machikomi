@@ -1,2 +1,22 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<conainer>
+  <div class="row">
+    <div class="col-lg-12 mx-auto">
+      <h1>マイページ</h1>
+
+      <%= link_to "MY投稿一覧", users_posts_path %>
+      <%= link_to "MYお気に入り一覧", users_favorites_path %>
+
+      <p>名前</p><%= current_user.last_name %><%= current_user.first_name %>
+      <p>フリガナ</p><%= current_user.last_name_kana%><%= current_user.first_name_kana %>
+      <p>メールアドレス</p><%= current_user.email %>
+      <p>生年月日</p><%= current_user.birth_year %>年<%= current_user.birth_month %>月<%= current_user.birth_day %>
+      <p>年齢</p><%= current_user.old %>歳
+      <p>郵便番号</p><%= current_user.postal_code %>
+      <p>住所</p><%= current_user.address %>
+
+      <%= link_to "変更する", edit_user_path(@user) %>
+      <%= link_to "退会する", users_withdraw_path(@user) %>
+
+    </div>
+  </div>
+</conainer>

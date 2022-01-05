@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'comments/create'
+  get 'comments/destroy'
   devise_for :admins
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -8,8 +10,12 @@ Rails.application.routes.draw do
   scope module: 'public' do
     get '/' => 'homes#top'
     resources :cities, only:[:index]
-    resources :columns, only:[:index, :show]
-    resources :posts
+    resources :columns, only:[:index, :show] do
+      resource :favorites, only: [:create, :destroy]
+    end
+    resources :posts do
+      resource :favorites, only: [:create, :destroy]
+    end
     get '/users/posts' => 'users#post'
     get '/users/favorites' => 'users#favorite'
     get '/users/confirm' => 'users#confirm'

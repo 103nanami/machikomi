@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_30_155235) do
+ActiveRecord::Schema.define(version: 2022_01_04_124652) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,6 +37,22 @@ ActiveRecord::Schema.define(version: 2021_12_30_155235) do
     t.integer "city_id"
     t.string "title"
     t.text "text"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.integer "column_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -76,7 +92,7 @@ ActiveRecord::Schema.define(version: 2021_12_30_155235) do
     t.string "birth_year"
     t.string "birth_month"
     t.string "birth_day"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

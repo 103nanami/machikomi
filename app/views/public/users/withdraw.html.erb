@@ -1,2 +1,13 @@
-<h1>Public::Users#withdraw</h1>
-<p>Find me in app/views/public/users/withdraw.html.erb</p>
+<conainer>
+  <div class="row">
+    <div class="col-lg-12 mx-auto">
+      <h1>退会しますか？</h1>
+      <p>退会すると、投稿やお気に入り情報が失われます。</br>
+      よろしければ退会するをクリックしてください。</p>
+
+      <%= form_with model:@user, local:true do |f| %>
+        <%= f.submit '退会する' %>
+        <%= f.submit '退会しない' %>
+      <% end %>
+  </div>
+</conainer>

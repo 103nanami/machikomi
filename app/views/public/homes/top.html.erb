@@ -1,2 +1,35 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<container>
+  <div class="row">
+    <div class="col-lg-12 mx-auto">
+      <h1>まちコミ</h1>
+
+      <h2>新着投稿</h2>
+        <% @posts.each do |post| %>
+          <%= post.post_name %>
+        <% end %>
+
+        <% link_to posts_path do %>
+        <p>全ての投稿を見る</p>
+        <% end %>
+
+      <h2>人気の投稿</h2>
+        <% @post_ranks.each do |post_rank| %>
+          <%= post_rank.post.post_name %>
+        <% end %>
+
+        <% link_to posts_path do %>
+          <p>全ての投稿を見る</p>
+        <% end %>
+
+      <h2>人気の街</h2>
+        <% @column_ranks.each do |column_rank| %>
+          <%= column_rank.column.name %>
+        <% end %>
+
+        <% link_to cities_path do %>
+          <p>全ての街を見る</p>
+        <% end %>
+
+    </div>
+  </div>
+</container>

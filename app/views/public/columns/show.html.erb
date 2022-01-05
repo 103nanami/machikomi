@@ -1,2 +1,25 @@
-<h1>Public::Columns#show</h1>
-<p>Find me in app/views/public/columns/show.html.erb</p>
+<container>
+  <div class=“row”>
+    <div class=“col-lg-12 mx-auto”>
+      <h1><%= @column.city.name %>のコラム</h1>
+
+        <% if @column.favorited_by?(current_user) %>
+          <p>
+            <%= link_to post_favorites_path(@column), method: :delete do %>
+              ♥<%= @column.favorites.count %> いいね
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to post_favorites_path(@column), method: :post do %>
+              ♡<%= @column.favorites.count %> いいね
+            <% end %>
+          </p>
+      <% end %>
+
+      <%= attachment_image_tag @column, :image %>
+      <%= @column.name %>
+      <%= @column.text %>
+    </div>
+  </div>
+</container>

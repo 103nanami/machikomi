@@ -46,7 +46,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :birth_year
       t.string :birth_month
       t.string :birth_day
-      t.boolean :is_active
+      t.boolean :is_active, default: true, null: false
 
     end
 

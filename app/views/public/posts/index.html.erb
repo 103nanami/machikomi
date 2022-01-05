@@ -1,2 +1,12 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<container>
+  <div class=“row”>
+    <div class=“col-lg-12 mx-auto”>
+      <h1>投稿一覧</h1>
+      <%= @posts.each do |post| %>
+        <%= post.image %>
+        <%= post.post_name %>
+        <%= post.post_text %>
+      <% end %>
+    </div>
+  </div>
+</container>

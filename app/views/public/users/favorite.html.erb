@@ -1,2 +1,16 @@
-<h1>Public::Users#favorite</h1>
-<p>Find me in app/views/public/users/favorite.html.erb</p>
+<conainer>
+  <div class="row">
+    <div class="col-lg-12 mx-auto">
+      <h1>お気に入り</h1>
+
+
+
+      <%= @users.each do |user| %>
+        <%= attachment_image_tag user :image %>
+        <%= user.post.post_name %>
+        <%= user.post.post_text %>
+      <% end %>
+
+    </div>
+  </div>
+</conainer>

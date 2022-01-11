@@ -13,14 +13,30 @@
        <table>
         <tr>
           <th><label>名前</label></th>
-          <td>(姓)　<%= f.text_field :last_name, autofocus: true,placeholder: "令和", style:"margin-left:17px; width:250px;" %></td>
-          <td style="padding-left:30px;">(名)　<%= f.text_field :first_name, autofocus: true,placeholder: "道子", style:"width:250px; margin-left:17px;"  %></td>
+          <td><%= f.text_field :last_name, autofocus: true,placeholder: "町野", style:" width:250px;" %></td>
+          <td style="padding-left:30px;"><%= f.text_field :first_name, autofocus: true,placeholder: "町子", style:"width:250px;"  %></td>
         </tr>
 
         <tr>
           <th><label>フリガナ</label></th>
-          <td>(セイ)　<%= f.text_field :last_name_kana, autofocus: true,placeholder: "レイワ" ,style:"width:250px;" %></td>
-          <td style="padding-left:30px;">(メイ)　<%= f.text_field :first_name_kana, autofocus: true,placeholder: "ミチコ",style:"width:250px;" %></td>
+          <td><%= f.text_field :last_name_kana, autofocus: true,placeholder: "マチノ" ,style:"width:250px;" %></td>
+          <td style="padding-left:30px;"><%= f.text_field :first_name_kana, autofocus: true,placeholder: "マチコ",style:"width:250px;" %></td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th><label>生年月日</label></th>
+          <td><%= f.select :birth_year, *[1980..2010], autofocus: true %>年</td>
+          <td style="padding-left:30px;"><%= f.select :birth_year, *[1..12], autofocus: true %>月</td>
+          <td style="padding-left:30px;"><%= f.select :birth_day, *[1..31], autofocus: true %>日</td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th><label>年齢</label></th>
+          <td style="margin-left:20px;"><%= f.text_field :old, autofocus: true %>歳</td>
         </tr>
 
         <tr>
@@ -37,7 +53,7 @@
       <table>
         <tr>
           <th><label>住所</label></th>
-          <td><%= f.text_field :adress, autofocus: true, style:"margin:0 0 0 55px; width:500px;" %></td>
+          <td><%= f.text_field :address, autofocus: true, style:"width:500px;" %></td>
         </tr>
       </table>
 
@@ -66,7 +82,7 @@
   <div class="row">
     <div class="col-lg-10">
       <h5 style="background-color:#f0f0f0; width:250px; padding:0px 40px; margin:30px 0 30px 0">既に登録済みの方</h5>
-      <p><%= link_to "こちら",new_users_session_path %>からログインしてください。</p>
+      <p><%= link_to "こちら",new_user_session_path %>からログインしてください。</p>
     </div>
   </div>
 

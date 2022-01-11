@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     get '/' => 'homes#top'
     resources :users, only:[:index, :show]
     get '/columns/confirm' => 'columns#confirm'
-    resources :columns, only:[:new, :create ,:show, :index]
+    resources :columns, only:[:show, :new, :create, :edit, :update, :destroy]
   end
 
 

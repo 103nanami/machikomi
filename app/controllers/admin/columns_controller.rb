@@ -4,7 +4,7 @@ class Admin::ColumnsController < ApplicationController
   end
 
   def confirm
-    @column = Column.new(column_params)
+    #@column = Column.new(column_params)
   end
 
   def create
@@ -14,6 +14,23 @@ class Admin::ColumnsController < ApplicationController
   end
 
   def show
+    @column = Column.find(params[:id])
+  end
+
+  def edit
+    @column = Column.find(params[:id])
+  end
+
+  def update
+    @column = Column.find(params[:id])
+    @column.update(column_params)
+    redirect_to admin_column_path(@column.id)
+  end
+
+  def destroy
+    column = Column.find(params[:id])
+    column.destroy
+    redirect_to admin_columns_path
   end
 
   private

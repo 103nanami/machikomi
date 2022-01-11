@@ -1,3 +1,43 @@
 // Place all the styles related to the admin/columns controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.button{
+  text-align: center;
+  margin-top: 50px;
+}
+
+table{
+  margin: 0 auto;
+}
+
+.table_title{
+  padding: 20px 50px 0 0;
+}
+
+.table_text{
+  padding: 20px 50px 0 0;
+}
+
+.image{
+  margin: 20px auto 20px auto;
+}
+
+.column_text{
+  width: 60%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.button{
+  margin: 30px auto;
+}
+
+.column-all{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column{
+  width: 30%;
+}

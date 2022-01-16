@@ -1,16 +1,36 @@
-<conainer>
+<container>
   <div class="row">
     <div class="col-lg-12 mx-auto">
-      <h1>お気に入り</h1>
 
+      <div class="tabs">
 
+        <input id="all" type="radio" name="tab_item" checked>
+        <label class="tab_item" for="all">お気に入りの投稿</label>
 
-      <%= @users.each do |user| %>
-        <%= attachment_image_tag user :image %>
-        <%= user.post.post_name %>
-        <%= user.post.post_text %>
-      <% end %>
+        <input id="programming" type="radio" name="tab_item">
+        <label class="tab_item" for="programming">お気に入りのまち</label>
 
-    </div>
+        <div class="tab_content" id="all_content">
+          <div class="tab_content_description">
+            <%=  @favorite_post_lists.each do |favorite_post_list| %>
+              <%= attachment_image_tag favorite_post_list, :image %>
+              <%= favorite_post_list.post_name %>
+              <%= favorite_post_list.post_text %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="tab_content" id="programming_content">
+          <div class="tab_content_description">
+            <%= @favorite_column_lists.each do |favorite_column_list| %>
+              <%= attachment_image_tag favorite_column_list, :image %>
+              <%= favorite_column_list.post_name %>
+              <%= favorite_column_list.post_text %>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+
   </div>
-</conainer>
+</container>

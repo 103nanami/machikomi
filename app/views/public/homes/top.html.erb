@@ -5,7 +5,10 @@
 
       <h2>新着投稿</h2>
         <% @posts.each do |post| %>
+          <div class="post">
+          <%= attachment_image_tag post ,:image, format: 'jpeg', style:"width:200px; height:auto;" %>
           <%= post.post_name %>
+          </div>
         <% end %>
 
         <% link_to posts_path do %>
@@ -14,16 +17,22 @@
 
       <h2>人気の投稿</h2>
         <% @post_ranks.each do |post_rank| %>
+          <div class="post_rank">
+          <%= attachment_image_tag post_rank ,:image, format: 'jpeg', style:"width:200px; height:auto;" %>
           <%= post_rank.post.post_name %>
+          </div>
         <% end %>
 
         <% link_to posts_path do %>
           <p>全ての投稿を見る</p>
         <% end %>
 
-      <h2>人気の街</h2>
+      <h2>人気のまち</h2>
         <% @column_ranks.each do |column_rank| %>
+          <div class="column_rank">
+          <%= attachment_image_tag column_rank ,:image, format: 'jpeg', style:"width:200px; height:auto;" %>
           <%= column_rank.column.name %>
+          </div>
         <% end %>
 
         <% link_to cities_path do %>

@@ -1,14 +1,19 @@
 <container>
   <div class="row">
     <dv class="col-lg-12 mx-auto">
-      <label>タイトル</label>
-      <%= @post.post_name %>
+      <table>
+        <tr>
+          <td><%= attachment_image_tag @post, :image %></td>
+        </tr>
 
-      <label>内容</label>
-      <%= @post.post_text %>
+        <tr>
+          <td><%= @post.post_name %></td>
+        </tr>
 
-      <label>画像</label>
-      <%= attachment_image_tag @post, :image %>
+        <tr>
+          <td><%= @post.post_text %></td>
+        </tr>
+      </table>
 
       <% if @post.favorited_by?(current_user) %>
         <p>
@@ -22,7 +27,7 @@
             ♡<%= @post.favorites.count %> いいね
           <% end %>
         </p>
-    <% end %>
+      <% end %>
 
     </dv>
   </div>

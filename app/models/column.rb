@@ -1,6 +1,6 @@
 class Column < ApplicationRecord
 
-  #belongs_to :city
+  belongs_to :city
   has_many :favorites, dependent: :destroy
 
   def favorited_by?(user)

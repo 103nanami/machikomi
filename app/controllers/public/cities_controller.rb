@@ -1,6 +1,7 @@
 class Public::CitiesController < ApplicationController
   def index
     @cities = City.all
+    @column = Column.show
   end
 
   private

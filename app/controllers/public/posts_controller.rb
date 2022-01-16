@@ -1,6 +1,7 @@
 class Public::PostsController < ApplicationController
   def index
     @posts = Post.all
+    @post_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
   end
 
   def new
@@ -8,6 +9,9 @@ class Public::PostsController < ApplicationController
   end
 
   def create
+    post = Post.new(post_params)
+    post.save
+    redirect_to posts_path
   end
 
   def show

@@ -9,3 +9,15 @@ Admin.create!(
    email: '123@1234',
    password: '123456'
 )
+
+City.create!(
+   [
+      {name: '中野'},
+      {name: '高円寺'},
+      {name: '阿佐ヶ谷'},
+      {name: '荻窪'},
+      {name: '西荻窪'},
+      {name: '吉祥寺'},
+      {name: '三鷹'}
+   ]
+)

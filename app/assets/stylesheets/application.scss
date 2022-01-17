@@ -18,6 +18,67 @@
 @import 'font-awesome';
 
 
+main{
+  background-color: #fffcf2;
+}
+
+/*ヘッダー*/
+.post_icon{
+  margin: 35px 10px 0 0;
+}
+
+.navbar-light .navbar-toggler {
+  border-color: white;
+}
+
+.navbar-toggler{
+  background-color: white;
+  margin-left: auto;
+  padding: 30px 40px 0 0;
+}
+
+.logo{
+  display:flex;
+  margin: 0 auto;
+}
+
+.top_title{
+}
+
+.nav-right{
+  margin: 0 0 0 auto;
+}
+
+.nav-list{
+   margin: 20px;
+ }
+
+.top_title{
+  margin:50px 50px 30px 20px;
+  color: #1c1d21;
+}
+
+.d-flex{
+ width:300px;
+ float: right;
+ margin:0 20px 10px 0;
+}
+
+.link_to{
+  text-decoration: none;
+  color: #464c4b;
+}
+
+.link_to:hover{
+  text-decoration: none;
+  color: #81abb9;
+}
+
+
+
+
+
+
 .admin_title{
   margin: 50px 0 20px 50px;
 }
@@ -36,42 +97,7 @@
   margin-top: 50px;
 }
 
-.link_to:hover{
-  text-decoration: none;
-}
-
 .notice{
   color: #1c1d21;
   margin-top:60px;
  }
-
-.nav{
-　width:100%;
-　background-color: white;
-　box-shadow: 0 8px 3px -3px #e1e4f2;
-　position: fixed;
-  z-index: 1;
-}
-
-.logo-nav{
-  display:flex;
-}
-
-.nav-right{
-  margin:0 0 0 auto;
-}
-
-.nav-list{
-   margin:20px;
- }
-
-.top_title{
-  margin:50px 50px 30px 20px;
-  color: #1c1d21;
-}
-
-.d-flex{
- width:300px;
- float: right;
- margin:0 20px 10px 0;
-}

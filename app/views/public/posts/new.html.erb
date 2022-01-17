@@ -2,7 +2,10 @@
 
   <%= form_with model: @post, url:posts_path, method: :POST, local:true do |f| %>
     <div class="row">
-      <div class="col-lg-12 mx-auto">
+      <div class="col-lg 3">
+      </div>
+
+      <div class="col-lg-6 mx-auto">
         <table>
           <tr>
             <td class="table_text">画像を選択　<%= f.attachment_field :image %></td>
@@ -17,17 +20,29 @@
           </tr>
 
           <tr>
-            <td class="table_title">街</td>
-            <td class="table_text"></td>
+            <td class="table_text">
+              <%= f.select :city_id, @cities.map{ |city| [city.name, city.id] },:prompt => "まちを選択" %>
+            </td>
           </tr>
 
         </table>
       </div>
+
+      <div class="col-lg 3">
+      </div>
     </div>
 
     <div class="row">
-      <div class="button">
-        <%=f.submit "投稿", class:"btn btn-info" ,style:"width:120px" %>
+      <div class="col-lg 3">
+      </div>
+
+      <div class="col-lg-6 mx-auto">
+        <div class="button">
+          <%=f.submit "投稿", class:"btn btn-info" ,style:"width:120px" %>
+        </div>
+      </div>
+
+      <div class="col-lg 3">
       </div>
     </div>
   <% end %>

@@ -6,9 +6,11 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @cities = City.all
   end
 
   def create
+
     post = Post.new(post_params)
     post.save
     redirect_to posts_path
@@ -30,6 +32,6 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:post_name, :post_text, :image)
+    params.require(:post).permit(:post_name, :post_text, :image, :city_id, :user_id)
   end
 end

@@ -10,68 +10,75 @@
   </head>
 
   <body>
-    <header class="nav">
-      <div class="logo-nav">
+    <header>
+      <div class="nav">
         <div class="logo">
           <%= link_to root_path, class:"link_to" do %>
-          <h1 class="top_title">まちコミ</h1>
+            <h3 class="top_title">まちコミ</h3>
           <% end %>
         </div>
 
-        <div class="flash">
-          <p class="notice"><%= notice %></p>
+        <div class="post_icon">
+          <%= link_to new_post_path do %>
+            <%= image_tag 'post_new_icon.png',style:"width:40px; height:auto;" %>
+          <% end %>
         </div>
 
-             <nav class="navbar navbar-expand-md">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                  <ul class="navbar-nav ml-auto">
-                    <% if user_signed_in? %>
-                      <li class="nav-item">
-                        <%= link_to "投稿一覧", posts_path, class:"btn btn-light", class:"nav-link" %>
-                      </li>
-                      <li class="nav-item">
-                        <%= link_to "街のコラム", columns_path, class:"btn btn-light", class:"nav-link"  %>
-                      </li>
-                      <li class="nav-item">
-                        <%= link_to "マイページ", users_my_page_path, class:"btn btn-light", class:"nav-link"  %>
-                      </li>
-                      <li class="nav-item">
-                        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-light",style:"margin-left:20px", class:"nav-link"  %>
-                      </li>
+        <div class="pos-f-t">
+          <nav class="navbar navbar-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </nav>
+          <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-white">
+              <ul class="navbar-nav ml-auto">
+                <% if user_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to "投稿一覧", posts_path, class:"link_to" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "街のコラム", columns_path, class:"link_to"  %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "マイページ", users_my_page_path, class:"link_to"  %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"link_to"  %>
+                  </li>
 
-                    <% elsif admin_signed_in? %>
-                      <li class="nav-item active">
-                        <%= link_to "コラム一覧", admin_columns_path, class:"btn btn-light" %>
-                      <li class="nav-item">
-                        <%= link_to "ユーザー一覧", admin_users_path, class:"btn btn-light" %>
-                      </li>
-                      <li class="nav-item">
-                        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-light",style:"margin-left:20px" %>
-                      </li>
+                <% elsif admin_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to "コラム一覧", admin_columns_path, class:"link_to" %>
+                  <li class="nav-item">
+                    <%= link_to "ユーザー一覧", admin_users_path, class:"link_to" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"link_to" %>
+                  </li>
 
-                    <% else %>
-                      <li class="nav-item active">
-                        <%= link_to "新規登録", new_admin_registration_path, class:"btn btn-light" %>
-                      <li class="nav-item">
-                        <%= link_to "ログイン", new_admin_session_path, class:"btn btn-light" %>
-                      </li>
-                      <li class="nav-item">
-                        <%= link_to "投稿一覧", posts_path, class:"btn btn-light" %>
-                      </li>
-                       <li class="nav-item">
-                       <%= link_to "街のコラム", columns_path, method: :delete, class:"btn btn-light",style:"margin-left:20px" %>
-                      </li>
-                    <% end %>
-                  </ul>
-                </div>
-              </nav>
-
-
+                <% else %>
+                  <li class="nav-item">
+                    <%= link_to "新規登録", new_admin_registration_path, class:"link_to" %>
+                  <li class="nav-item">
+                    <%= link_to "ログイン", new_admin_session_path, class:"link_to" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "投稿一覧", posts_path, class:"link_to" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "街のコラム", columns_path, method: :delete, class:"link_to" %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
-
-    <%= yield %>
+    
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

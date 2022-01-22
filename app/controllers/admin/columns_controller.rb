@@ -1,6 +1,7 @@
 class Admin::ColumnsController < ApplicationController
   def new
     @column = Column.new
+    @cities = City.all
   end
 
   def confirm
@@ -35,6 +36,6 @@ class Admin::ColumnsController < ApplicationController
 
   private
   def column_params
-    params.require(:column).permit(:image, :title, :text)
+    params.require(:column).permit(:image, :title, :text ,:city_id)
   end
 end

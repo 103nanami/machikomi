@@ -6,10 +6,12 @@ class CreatePosts < ActiveRecord::Migration[5.2]
 
       t.integer :user_id
       t.integer :city_id
-      t.integer :spot_id
       t.string :image_id
       t.string :post_name
+      t.float :lat
+      t.float :lng
       t.text :post_text
+
     end
   end
 end

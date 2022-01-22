@@ -10,7 +10,6 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-
     post = Post.new(post_params)
     post.save
     redirect_to posts_path
@@ -18,6 +17,8 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
+    @post_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
   end
 
   def edit
@@ -30,8 +31,13 @@ class Public::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def spot
+    #@posts = Post.all
+    @posts = Post.where(params[:lat]).where(params[:lng])
+  end
+
   private
   def post_params
-    params.require(:post).permit(:post_name, :post_text, :image, :city_id, :user_id)
+    params.require(:post).permit(:post_name, :post_text, :image, :city_id, :user_id, :lat, :lng)
   end
 end

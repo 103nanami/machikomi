@@ -13,8 +13,11 @@ Rails.application.routes.draw do
     resources :columns, only:[:index, :show] do
       resource :favorites, only: [:create, :destroy]
     end
+    get '/spots' => 'posts#spot'
     resources :posts do
       resource :favorites, only: [:create, :destroy]
+      resource :comments, only: [:create]
+      resource :comments, only: [:destroy]
     end
     get '/users/posts' => 'users#post'
     get '/users/favorites' => 'users#favorite'

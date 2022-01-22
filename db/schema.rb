@@ -60,17 +60,19 @@ ActiveRecord::Schema.define(version: 2022_01_04_124652) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "city_id"
-    t.integer "spot_id"
     t.string "image_id"
     t.string "post_name"
+    t.float "lat"
+    t.float "lng"
     t.text "post_text"
   end
 
   create_table "spots", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "latitude"
-    t.integer "longitude"
+    t.integer "post_id"
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "users", force: :cascade do |t|

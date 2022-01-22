@@ -1,10 +1,16 @@
 <div class="container">
   <div class="row">
-    <h5 style="background-color:#f0f0f0; width:200px; padding:0px 40px; margin:30px 0 30px 0">新規会員登録</h5>
+    <div class="col-lg-2">
+    </div>
+
+    <div class="col-lg-6">
+      <h3 class="page_title">新規会員登録</h3>
+    </div>
   </div>
 
   <div class="row">
     <div class="col-md-10">
+
 
       <%#= form_for(Customer.new, url: customer_registration_path) do |f| %>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -22,18 +28,16 @@
           <td><%= f.text_field :last_name_kana, autofocus: true,placeholder: "マチノ" ,style:"width:250px;" %></td>
           <td style="padding-left:30px;"><%= f.text_field :first_name_kana, autofocus: true,placeholder: "マチコ",style:"width:250px;" %></td>
         </tr>
-      </table>
 
-      <table>
         <tr>
           <th><label>生年月日</label></th>
-          <td><%= f.select :birth_year, *[1980..2010], autofocus: true %>年</td>
-          <td style="padding-left:30px;"><%= f.select :birth_year, *[1..12], autofocus: true %>月</td>
-          <td style="padding-left:30px;"><%= f.select :birth_day, *[1..31], autofocus: true %>日</td>
+          <td>
+            <%= f.select :birth_year, *[1980..2010], autofocus: true %>年
+            <%= f.select :birth_year, *[1..12], autofocus: true %>月
+            <%= f.select :birth_day, *[1..31], autofocus: true %>日
+          </td>
         </tr>
-      </table>
 
-      <table>
         <tr>
           <th><label>年齢</label></th>
           <td style="margin-left:20px;"><%= f.text_field :old, autofocus: true %>歳</td>
@@ -41,31 +45,29 @@
 
         <tr>
           <th><label>メールアドレス</label></th>
-          <td style="margin-left:20px;"><%= f.email_field :email, autofocus: true, autocomplete: "email", style:"margin:0 0 0 55px; width:250px;" %></td>
+          <td style="margin-left:20px;"><%= f.email_field :email, autofocus: true, autocomplete: "email", style:"width:250px;" %></td>
         </tr>
 
         <tr>
           <th><label>郵便番号(ハイフンなし)</label></th>
-          <td><%= f.text_field :postal_code, autofocus: true , style:"margin:0 0 0 55px; width:250px;"%></td>
+          <td><%= f.text_field :postal_code, autofocus: true , style:"width:250px;"%></td>
         </tr>
       </table>
 
       <table>
         <tr>
-          <th><label>住所</label></th>
+          <th style="padding-left:0;"><label>住所</label></th>
           <td><%= f.text_field :address, autofocus: true, style:"width:500px;" %></td>
         </tr>
-      </table>
 
-      <table>
          <tr>
-          <th><label>パスワード(6文字以上)</label></th>
-          <td><%= f.password_field :password, autocomplete: "new-password", style:"margin:0 0 0 55px; width:250px;" %></td>
+          <th style="padding-left:0;"><label>パスワード(6文字以上)</label></th>
+          <td><%= f.password_field :password, autocomplete: "new-password", style:"width:250px;" %></td>
         </tr>
 
          <tr>
-          <th><label>パスワード(確認用)</label></th>
-          <td><%= f.password_field :password_confirmation, autocomplete: "new-password", style:"margin:0 0 0 55px; width:250px;" %></td>
+          <th style="padding-left:0;"><label>パスワード(確認用)</label></th>
+          <td><%= f.password_field :password_confirmation, autocomplete: "new-password", style:"width:250px;" %></td>
         </tr>
 
         <tr>
@@ -78,23 +80,4 @@
       </table>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-lg-10">
-      <h5 style="background-color:#f0f0f0; width:250px; padding:0px 40px; margin:30px 0 30px 0">既に登録済みの方</h5>
-      <p><%= link_to "こちら",new_user_session_path %>からログインしてください。</p>
-    </div>
-  </div>
-
-
 </div>
-
-<style>
-
-  th{
-    text-align: left;
-    font-weight: normal;
-    width:200px;
-    padding:10px;
-  }
-</style>

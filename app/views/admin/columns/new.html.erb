@@ -10,23 +10,21 @@
       <div class="col-lg-12 mx-auto">
         <table>
           <tr>
-            <td class="table_title">タイトル</td>
-            <td class="table_text"><%= f.text_field :title, style:"width:300px; height:25px;" %></td>
+            <td class="table_text"><%= f.text_field :title, style:"width:300px; height:25px;", placeholder:"タイトル" %></td>
           </tr>
 
           <tr>
-            <td class="table_title">街</td>
-            <td class="table_text"></td>
+            <td class="table_text">
+              <%= f.select :city_id, @cities.map{ |city| [city.name, city.id] },:prompt => "まちを選択" %>
+            </td>
           </tr>
 
           <tr>
-            <td class="table_title",style="">記事</td>
-            <td class="table_text"><%= f.text_area :text, style:"width:400px; height:200px;" %></td>
+            <td class="table_text"><%= f.text_area :text, style:"width:400px; height:200px;", placeholder:"記事" %></td>
           </tr>
 
           <tr>
-            <td class="table_title">画像</td>
-            <td class="table_text"><%= f.attachment_field :image %></td>
+            <td class="table_text">画像を選択　<%= f.attachment_field :image %></td>
           </tr>
         </table>
       </div>

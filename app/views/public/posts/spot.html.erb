@@ -1,0 +1,56 @@
+<container>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="spot_posts">
+
+      </div>
+    </div>
+
+    <div class="col-lg-7">
+      <div id="gmap"></div>
+
+
+
+    </div>
+
+    <div class="col-lg-1">
+    </div>
+
+  </div>
+</container>
+
+ <script>
+    var map;
+    function initMap() {
+    var target = document.getElementById('gmap');
+    var empire = {lat: 35.689614, lng: 139.691585};
+    var marker = [];
+    var spaces = [
+      <% @posts.each do |post| %>
+        [<%= post.lat ||= 35.6802117 %>,<%= post.lng ||=139.7576692 %>],
+      <% end %>
+    ]
+
+    map = new google.maps.Map(target, {
+      center: empire,
+      zoom: 14
+    });
+
+    for(var i = 0; i < spaces.length; ++i) {
+      spot = new google.maps.LatLng({lat: spaces[i][0], lng: spaces[i][1]});
+      marker[i] = new google.maps.Marker({
+        position: spot,
+        map: map,
+      });
+
+      google.maps.event.addListener(marker[i], 'click', function(e) {
+        alert("ok")
+        /*$("spot_posts").show();*/
+      });
+      }
+    }
+    google.maps.event.addDomListener(window, 'load', initMap);
+
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5wzr3646rP2VFEUQPF-N-SoeyYBPhK-U&callback=initMap&v=weekly" async></script>

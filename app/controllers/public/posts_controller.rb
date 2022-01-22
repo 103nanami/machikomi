@@ -10,6 +10,7 @@ class Public::PostsController < ApplicationController
   end
 
   def create
+
     post = Post.new(post_params)
     post.save
     redirect_to posts_path
@@ -38,6 +39,10 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
+<<<<<<< HEAD
     params.require(:post).permit(:post_name, :post_text, :image, :city_id, :user_id, :lat, :lng)
+=======
+    params.require(:post).permit(:post_name, :post_text, :image, :city_id, :user_id)
+>>>>>>> f9b25d0e1a77d6b87915d09e31f46eb9a58cca29
   end
 end

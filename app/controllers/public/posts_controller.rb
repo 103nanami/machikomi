@@ -2,6 +2,9 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.all
     @post_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
+
+    #@gear = Gear.where(post_id: @post.id, city_id: city.id)
+
   end
 
   def new
@@ -39,10 +42,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-<<<<<<< HEAD
     params.require(:post).permit(:post_name, :post_text, :image, :city_id, :user_id, :lat, :lng)
-=======
-    params.require(:post).permit(:post_name, :post_text, :image, :city_id, :user_id)
->>>>>>> f9b25d0e1a77d6b87915d09e31f46eb9a58cca29
   end
+
 end

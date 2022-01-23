@@ -4,6 +4,7 @@ class CreateCities < ActiveRecord::Migration[5.2]
 
       t.timestamps
       t.string :name
+      t.integer :column_id
 
     end
   end

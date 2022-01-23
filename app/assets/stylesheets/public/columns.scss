@@ -1,14 +1,37 @@
 // Place all the styles related to the public/columns controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.column_all{
-   display: block;
+.image{
+  margin: 20px auto 20px auto;
 }
 
-.page_title{
-  margin: 50px 0 50px 50px;
+.column_title_box{
+  border-bottom: solid 1px;
+  margin: 50px 0 0 50px;
+}
+
+.column_text{
+  height: auto;
+}
+
+.button{
+  margin: 30px auto;
+}
+
+.column-all{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column{
+  width: 30%;
+}
+
+.column_main_box{
+  width: 600px;
+  margin: 0 auto;
 }
 
 .favorite{
-  font-size: 20px;
+  padding-right: 20px;
 }

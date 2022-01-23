@@ -12,12 +12,12 @@ Admin.create!(
 
 City.create!(
    [
-      {name: '中野'},
-      {name: '高円寺'},
-      {name: '阿佐ヶ谷'},
-      {name: '荻窪'},
-      {name: '西荻窪'},
-      {name: '吉祥寺'},
-      {name: '三鷹'}
+      {id: 1, name: '中野'},
+      {id: 2, name: '高円寺'},
+      {id: 3, name: '阿佐ヶ谷'},
+      {id: 4, name: '荻窪'},
+      {id: 5, name: '西荻窪'},
+      {id: 6, name: '吉祥寺'},
+      {id: 7, name: '三鷹'}
    ]
 )

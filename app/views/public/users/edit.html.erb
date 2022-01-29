@@ -1,20 +1,87 @@
 <conainer>
   <div class="row">
-    <div class="col-lg-12 mx-auto">
-      <h1>会員情報編集</h1>
+    <div class="col-lg-2">
+    </div>
 
-      <%= form_with model:@user, url:user_path(@user), method: :PATCH, local:true do |f| %>
-
-        <p>名前</p><%= current_user.last_name %><%= current_user.first_name %>
-        <p>フリガナ</p><%= current_user.last_name_kana%><%= current_user.first_name_kana %>
-        <p>メールアドレス</p><%= current_user.email %>
-        <p>生年月日</p><%= current_user.birth_year %>年<%= current_user.birth_month %>月<%= current_user.birth_day %>
-        <p>年齢</p><%= current_user.old %>歳
-        <p>郵便番号</p><%= current_user.postal_code %>
-        <p>住所</p><%= current_user.address %>
-
-        <%= f.submit '変更を確定する', class:"btn btn-info", style:"width:150px;" %>
-      <% end %>
+    <div class="title_mypage">
+      <h4 style="margin:0 0 20px 50px;">ユーザー情報の変更</h4>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+
+    <div class="col-lg-8">
+      <%= form_with model:@user, url:user_path(@user), method: :PATCH, local:true do |f| %>
+      <table>
+        <tr>
+          <th><label>名前</label></th>
+          <td><%= f.text_field :last_name, style:" width:250px;" %></td>
+          <td style="padding-left:30px;"><%= f.text_field :first_name, style:"width:250px;"  %></td>
+        </tr>
+
+        <tr>
+          <th><label>フリガナ</label></th>
+          <td><%= f.text_field :last_name_kana ,style:"width:250px;" %></td>
+          <td style="padding-left:30px;"><%= f.text_field :first_name_kana, style:"width:250px;" %></td>
+        </tr>
+
+        <tr>
+          <th><label>ユーザーネーム</label></th>
+          <td><%= f.text_field :username, style:"width:250px;"  %></td>
+        </tr>
+
+
+        <tr>
+          <th><label>性別</label></th>
+          <td><%= f.select :sex, [['女性',1],['男性',2]] %></td>
+        </tr>
+
+        <tr>
+          <th><label>生年月日</label></th>
+          <td>
+            <%= f.select :birth_year, *[1980..2010] %>年
+            <%= f.select :birth_month, *[1..12] %>月
+            <%= f.select :birth_day, *[1..31] %>日
+          </td>
+        </tr>
+
+        <tr>
+          <th><label>年齢</label></th>
+          <td style="margin-left:20px;"><%= f.text_field :old %>歳</td>
+        </tr>
+
+        <tr>
+          <th><label>メールアドレス</label></th>
+          <td style="margin-left:20px;"><%= f.email_field :email, style:"width:250px;" %></td>
+        </tr>
+
+        <tr>
+          <th><label>郵便番号</label></th>
+          <td><%= f.text_field :postal_code, style:"width:250px;"%></td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th style="padding-left:0;"><label>住所</label></th>
+          <td><%= f.text_field :address, style:"width:500px;" %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-lg-2">
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="btn-link">
+      <%= f.submit "変更を確定", class:"btn btn-outline-info" ,style:"margin:0 0 0 55px; width:200px;" %>
+    </div>
+  </div>
+  <% end %>
 </conainer>
+
+

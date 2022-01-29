@@ -6,7 +6,7 @@
   text-aline: center;
 }
 
-.col-lg-12{
+.city_all{
   margin-top: 50px;
 }
 
@@ -14,6 +14,13 @@
   display: block;
 }
 
+.recomend_post_box{
+  margin-bottom: 100px;
+}
+
+.recomend_post{
+  display: block;
+}
 
 #map{
   width: 400px;
@@ -55,14 +62,13 @@ table{
 
   .post_title_box{
     margin-top: 30px;
-    text-align: center;
   }
 
   .post_title{
     font-weight: bold;
   }
 
-  .favorite{
+  #favorite{
     text-align: right;
     margin-right: 50px;
   }
@@ -75,17 +81,64 @@ table{
     width: 600px;
   }
 
-  .post_main_box{
-    width: 600px;
-    margin: 0 auto;
+  .post_text{
+    margin-top:20px;
   }
 
-  .comment_all{
-    margin-top: 50px;
+  .post_main_box{
+    width: 600px;
+  }
+
+  .posts_all{
+    margin: 50px 0 0 100px;
   }
 
   #googlemap{
-    margin-top: 20px;
+    margin-top: 50px;
     width: 500px;
     height: 300px;
+  }
+
+  .image {
+    margin: 0px auto 0px auto;
+  }
+
+  .recomend_all{
+    margin-top: 20px;
+  }
+
+  .comment{
+    margin-top: 50px;
+  }
+
+  .comment_all{
+    margin-top: 20px;
+    display: flex;
+  }
+
+  .post_detail{
+    display: flex;
+  }
+
+  .favorite a{
+    text-decoration: none;
+  }
+
+  .current_user_show{
+    width: 600px;
+  }
+
+  .current_user_show_btn{
+    margin: 20px 0;
+    text-align: right;
+  }
+
+  .table_image{
+    display: flex;
+    align-items: center;
+  }
+
+  #posts_all{
+    margin: 0 auto;
+    width: 950px;
   }

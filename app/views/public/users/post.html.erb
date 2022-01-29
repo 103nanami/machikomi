@@ -1,14 +1,47 @@
 <conainer>
   <div class="row">
-    <div class="col-lg-12 mx-auto">
-      <h1>自分の投稿</h1>
+    <div class="col-lg-2">
+    </div>
 
-      <% @my_posts.each do |my_post| %>
-        <%= attachment_image_tag my_post, :image %>
-        <%= my_post.post_name %>
-        <%= my_post.post_text %>
-      <% end %>
+    <div class="title_mypage">
+      <h4 style="margin:0 0 20px 50px;">自分の投稿</h4>
+    </div>
 
+    <div class="col-lg-2">
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+
+    <div class="col-lg-8", style="margin-bottom:80px;">
+
+      <div class="my_post_all">
+        <div class="card-columns">
+        <% @my_posts.each do |my_post| %>
+        <div class="card">
+          <div class="mypost_img">
+            <%= link_to post_path(my_post) do %>
+              <%= attachment_image_tag my_post, :image, style:"width:300px; height:200px;" %>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <p><%= my_post.post_name %></p>
+            <p><%= my_post.post_text %></p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      </div>
+
+      <div style="margin-top:20px;"><%= paginate @posts %></div>
+    </div>
+
+    <div class="col-lg-2">
+    </div>
+
+  </div>
 </conainer>
+
+

@@ -1,39 +1,50 @@
 <container>
-  <div class=“row”>
-    <h2 class="page_title">まちのコラム</h2>
-  </div>
-
-  <div class="row">
+  <div class="row", style="margin-top:50px;">
     <div class="col-lg-1">
     </div>
 
-    <div class="col-lg-2">
-      <div class="city_button">
-        <%= link_to "街から探す", cities_path, class:"btn btn-info" ,style:"width:120px" %>
-      </div>
+    <div class="col-lg-3">
+     <div class="recomend">
+        <div class="recomend_title">
+          <p>おすすめのコラム</p>
+        </div>
 
-      <div class="recomend">
-        <p class="recomend_title">おすすめのコラム</p>
         <div class="recomend_column">
           <% @column_ranks.each do |column_rank| %>
-            <%= link_to column_path(column_rank) do %>
-              <%= attachment_image_tag column_rank, :image, style:"width:150px; height:auto;" %>
-            <% end %>
-            <%= column_rank.column.column_name %>
+            <div class="recomend_post">
+              <%= link_to column_path(column_rank) do %>
+                <%= attachment_image_tag column_rank, :image, style:"width:150px; height:auto;" %>
+              <% end %>
+              <p><%= column_rank.title %></p>
+            </div>
           <% end %>
         </div>
       </div>
     </div>
 
     <div class="col-lg-7">
-      <% @columns.each do |column| %>
-        <div class="column_all">
-          <%= link_to column_path(column) do %>
-            <%= attachment_image_tag column, :image, style:"width:300px; height:auto;" %>
-          <% end %>
-          <%= column.title %>
+
+      <div class="card-columns">
+        <% @columns.each do |column| %>
+        <div class="card">
+          <div class="card-img-top">
+            <%= link_to column_path(column) do %>
+              <%= attachment_image_tag column, :image, style:"width:300px; height:200px;" %>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <p><%= column.title %></p>
+            <p><%= image_tag asset_path('mappin.png'),style:"width:20px;" %><%= column.city.name %></p>
+          </div>
         </div>
-      <% end %>
+        <% end %>
+      </div>
+
+      <div style="margin:20px 0 80px 0;"><%= paginate @columns %></div>
+
+    </div>
+
+    <div class="col-lg-1">
     </div>
 
   </div>

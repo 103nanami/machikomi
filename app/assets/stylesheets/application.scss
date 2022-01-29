@@ -18,23 +18,29 @@
 @import 'font-awesome';
 
 
-main{
+/*main{
   background-color: #fffcf2;
+}*/
+
+body{
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+main{
+  flex: 1;
 }
 
 /*ヘッダー*/
 .post_icon{
   margin: 35px 10px 0 0;
-}
-
-.navbar-light .navbar-toggler {
-  border-color: white;
-}
-
-.navbar-toggler{
-  background-color: white;
-  margin-left: auto;
-  padding: 30px 40px 0 0;
+  display : block;
+  position: fixed;
+  right : 100px;
+  top   : 7px;
+  width : 42px;
+  height: 42px;
 }
 
 .logo{
@@ -42,7 +48,11 @@ main{
   margin: 0 auto;
 }
 
-.top_title{
+.navlogo{
+  margin: 30px 0 0 0;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 .nav-right{
@@ -52,11 +62,6 @@ main{
 .nav-list{
    margin: 20px;
  }
-
-.top_title{
-  margin:50px 50px 30px 20px;
-  color: #1c1d21;
-}
 
 .d-flex{
  width:300px;
@@ -74,21 +79,6 @@ main{
   color: #81abb9;
 }
 
-
-
-
-
-
-.admin_title{
-  margin: 50px 0 20px 50px;
-}
-
-.admin_title_box{
-  width:80%;
-  border-bottom:solid 1px;
-  margin-left: 40px
-}
-
 .city_button{
   margin-top: 20px;
 }
@@ -101,3 +91,171 @@ main{
   color: #1c1d21;
   margin-top:60px;
  }
+
+ #user_header, #admin_header{
+   height: 120px;
+   width: 100%;
+   background-image: image-url('header_image.png');
+   background-repeat: no-repeat;
+   background-size: cover;
+   display : block;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 999;
+ }
+
+ #userbody, #adminbody {
+   padding-top: 120px;
+ }
+
+ #footer{
+   height: 120px;
+   background-image: image-url('fooder_image.png');
+   background-repeat: no-repeat;
+   background-size: cover;
+ }
+
+ .hamburger {
+  display : block;
+  position: fixed;
+  z-index : 3;
+  right : 30px;
+  top   : 37px;
+  width : 42px;
+  height: 42px;
+  cursor: pointer;
+  text-align: center;
+}
+.hamburger span {
+  display : block;
+  position: absolute;
+  width   : 30px;
+  height  : 2px ;
+  left    : 6px;
+  background : black;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition   : 0.3s ease-in-out;
+  transition        : 0.3s ease-in-out;
+}
+.hamburger span:nth-child(1) {
+  top: 10px;
+}
+.hamburger span:nth-child(2) {
+  top: 20px;
+}
+.hamburger span:nth-child(3) {
+  top: 30px;
+}
+
+.hamburger.active span:nth-child(1) {
+  top : 16px;
+  left: 6px;
+  background :#fff;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform   : rotate(-45deg);
+  transform        : rotate(-45deg);
+}
+
+.hamburger.active span:nth-child(2),
+.hamburger.active span:nth-child(3) {
+  top: 16px;
+  background :#fff;
+  -webkit-transform: rotate(45deg);
+  -moz-transform   : rotate(45deg);
+  transform        : rotate(45deg);
+}
+
+nav.globalMenuSp {
+  position: fixed;
+  z-index : 2;
+  top  : 0;
+  left : 0;
+  color: #fff;
+  background: #c3d7db;
+  text-align: center;
+  width: 100%;
+  transform: translateX(100%);
+  transition: all 0.6s;
+}
+
+nav.globalMenuSp ul {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+}
+
+nav.globalMenuSp ul li {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  transition: .4s all;
+}
+nav.globalMenuSp ul li:last-child {
+  padding-bottom: 0;
+}
+nav.globalMenuSp ul li:hover{
+  background :#ddd;
+}
+
+nav.globalMenuSp ul li a {
+  display: block;
+  padding: 1em 0;
+  text-decoration :none;
+}
+
+nav.globalMenuSp.active {
+  opacity: 100;
+  display: block;
+   transform: translateX(0%);
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+.pagination>.active>a {
+  background: #93c9ff;
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+}
+
+.error_mess_all{
+  width: 600px;
+  border: solid 0.5px red;
+  border-radius: 10px;
+  color: red;
+  margin: 20px auto 0 auto;
+}
+
+.error_mess_title{
+  width: 600px;
+  height: 50px;
+  background: red;
+  border-radius: 10px 10px 0 0;
+  border-bottom: solid 0.5px red;
+}
+
+.error_mess_title h5{
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 10px;
+}
+
+.error_mess {
+  width: 300px;
+  margin: 10px auto;
+}
+
+.error_mess li{
+  padding-bottom: 10px;
+}

@@ -1,16 +1,29 @@
 <container>
   <div class="row">
-    <div class="col-lg-4">
-      <div class="spot_posts">
+    <div class="col-lg-1">
+    </div>
+
+    <div class="col-lg-3", style="margin-top:50px;">
+      <div class="spot_posts" >
+
+        <% @posts.each do |post| %>
+        <div class="card">
+          <%= link_to post_path(post) do %>
+            <%= attachment_image_tag post, :image, class:"card-img-top" %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= post.post_name %></h5>
+            <p class="card-text", style="padding-top:10px;">by <%#= post.username %></p>
+            <p class="card-text", style="padding:10px 0;"><%= post.post_text %></p>
+          </div>
+        </div>
+        <% end %>
 
       </div>
     </div>
 
-    <div class="col-lg-7">
+    <div class="col-lg-6", style="margin-top:50px;">
       <div id="gmap"></div>
-
-
-
     </div>
 
     <div class="col-lg-1">
@@ -23,7 +36,7 @@
     var map;
     function initMap() {
     var target = document.getElementById('gmap');
-    var empire = {lat: 35.689614, lng: 139.691585};
+    var empire = {lat: 35.705920321831975, lng: 139.61800825002};
     var marker = [];
     var spaces = [
       <% @posts.each do |post| %>
@@ -33,9 +46,10 @@
 
     map = new google.maps.Map(target, {
       center: empire,
-      zoom: 14
+      zoom: 13
     });
 
+    $(".spot_posts").hide();
     for(var i = 0; i < spaces.length; ++i) {
       spot = new google.maps.LatLng({lat: spaces[i][0], lng: spaces[i][1]});
       marker[i] = new google.maps.Marker({
@@ -44,8 +58,7 @@
       });
 
       google.maps.event.addListener(marker[i], 'click', function(e) {
-        alert("ok")
-        /*$("spot_posts").show();*/
+        $(".spot_posts").show();
       });
       }
     }

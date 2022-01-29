@@ -1,0 +1,48 @@
+<conainer>
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+
+    <div class="title_mypage">
+      <h4 style="margin: 0 0 20px 50px">自分の投稿</h4>
+    </div>
+
+    <div class="col-lg-2">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+
+    <div class="col-lg-8">
+
+      <div class="mycolumns_all">
+
+        <div class="card-columns">
+        <% @user_posts.each do |user_post| %>
+        <div class="card">
+          <div class="userpost_img">
+            <%= link_to admin_post_path(user_post) do %>
+              <%= attachment_image_tag user_post, :image, style:"width:300px; height:200px;" %>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <p><%= user_post.post_name %></p>
+            <p><%= image_tag 'mappin.png',style:"width:20px;" %><%= user_post.city.name %></p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+
+      </div>
+
+      <div style="margin-top:20px;"><%= paginate @page %></div>
+
+    </div>
+
+    <div class="col-lg-2">
+    </div>
+
+  </div>
+</conainer>

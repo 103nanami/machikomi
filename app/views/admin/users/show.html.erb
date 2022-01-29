@@ -1,2 +1,79 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<container>
+  <div class="row">
+
+    <div class="col-lg-3">
+    </div>
+
+    <div class="col-lg-6">
+
+      <h4 class="user_title">ユーザー情報</h4>
+
+      <table style="margin-top:50px;">
+        <tr>
+          <td style="padding:0 50px 30px 0;">名前</td>
+          <td style="padding:0 0 30px 50px;"><%= @user.last_name %> <%= @user.first_name %></td>
+        </tr>
+
+        <tr>
+          <td style="padding:0 50px 30px 0;">フリガナ</td>
+          <td style="padding:0 0 30px 50px;"><%= @user.last_name_kana %> <%= @user.first_name_kana %></td>
+        </tr>
+
+        <tr>
+          <td style="padding:0 50px 30px 0;">ユーザーネーム</td>
+          <td style="padding:0 0 30px 50px;"><%= @user.username %></td>
+        </tr>
+
+         <tr>
+          <td style="padding:0 50px 30px 0;">メールアドレス</td>
+          <td style="padding:0 0 30px 50px;"><%= @user.email %></td>
+        </tr>
+
+        <tr>
+          <td style="padding:0 50px 30px 0;">性別</td>
+          <td style="padding:0 0 30px 50px;">
+            <% if @user.sex == "1" %>
+              女性
+            <% else %>
+              男性
+            <% end %>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:0 50px 30px 0;">生年月日</td>
+          <td style="padding:0 0 30px 50px;"><%= @user.birth_year %>年<%= @user.birth_month %>月<%= @user.birth_day %>日</td>
+        </tr>
+
+        <tr>
+          <td style="padding:0 50px 30px 0;">年齢</td>
+          <td style="padding:0 0 30px 50px;"><%= @user.old %>歳</td>
+        </tr>
+
+        <tr>
+          <td style="padding:0 50px 30px 0;">住所</td>
+          <td style="padding:0 0 30px 50px;">
+            〒<%= @user.postal_code %></br>
+            <%= @user.address %>
+          </td>
+        </tr>
+
+         <tr>
+          <td style="padding:0 50px 30px 0;">ステータス</td>
+          <td style="padding:0 0 30px 50px;">
+            <% if @user.is_active_was %>
+              <p style="color:lightgreen;">有効</p>
+            <% else %>
+              <p style="color:red;">退会</p>
+            <% end %>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+
+     <div class="col-lg-3">
+    </div>
+
+  </div>
+</container>

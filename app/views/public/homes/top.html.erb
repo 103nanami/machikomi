@@ -1,43 +1,161 @@
-<container>
+<main>
+  <div class="back_image">
+
+    <div class="post_new_icon">
+      <%= link_to new_post_path do %>
+        <%= image_tag asset_path('post_new_icon.png'),style:"width:40px; height:auto;" %>
+      <% end %>
+    </div>
+
+    <div class="top_hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+    <nav class="top_globalMenuSp">
+          <ul>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "投稿一覧", posts_path, class:"link_to" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "街のコラム", columns_path, class:"link_to"  %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "マイページ", users_my_page_path, class:"link_to"  %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"link_to"  %>
+              </li>
+
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_user_registration_path, class:"link_to" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class:"link_to" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "投稿一覧", posts_path, class:"link_to" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "街のコラム", columns_path, method: :delete, class:"link_to" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "管理者はこちら", new_admin_session_path, class:"link_to" %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+
+
+    <div class="row">
+      <div class="col">
+
+      <div class="top_title">
+        <h3 style="padding:3px 30px 0 30px;">人気のまち</h3>
+        <p style="padding-top:7px;">
+          <%= image_tag asset_path('yajirusi.png'),style:"width:20px; height:auto;" %>
+          <%= link_to cities_path do %>
+            全てのまちを見る
+          <% end %>
+        </p>
+      </div>
+
+      <div class="multiple-items">
+          <% @column_ranks.each do |column_rank| %>
+            <div class="column_rank">
+              <%= attachment_image_tag column_rank ,:image, format: 'jpeg', style:"width:250px; height:180px;" %>
+              <p style="margin:10px 0 80px 0;"><%= column_rank.title %></p>
+            </div>
+          <% end %>
+      </div>
+
+    </div>
+    </div>
+
+  </div>
+
   <div class="row">
-    <div class="col-lg-12 mx-auto">
+    <div class="col">
 
-      <h2>新着投稿</h2>
-        <% @posts.each do |post| %>
-          <div class="post">
-          <%= attachment_image_tag post ,:image, format: 'jpeg', style:"width:200px; height:auto;" %>
-          <%= post.post_name %>
-          </div>
-        <% end %>
+      <div class="top_title_else">
+        <h3 style="padding:3px 30px 0 30px">人気の投稿</h3>
+        <p style="padding-top:7px;">
+          <%= image_tag asset_path('yajirusi.png'),style:"width:20px; height:auto;" %>
+          <%= link_to posts_path do %>
+            全ての投稿を見る
+          <% end %>
+        </p>
+      </div>
 
-        <% link_to posts_path do %>
-        <p>全ての投稿を見る</p>
-        <% end %>
-
-      <h2>人気の投稿</h2>
+      <div class="multiple-items_else">
         <% @post_ranks.each do |post_rank| %>
           <div class="post_rank">
-          <%= attachment_image_tag post_rank ,:image, format: 'jpeg', style:"width:200px; height:auto;" %>
-          <%= post_rank.post.post_name %>
+            <%= attachment_image_tag post_rank ,:image, format: 'jpeg', style:"width:250px; height:180px;" %>
+            <p  style="margin-top:10px;"><%= post_rank.post_name %></p>
           </div>
         <% end %>
-
-        <% link_to posts_path do %>
-          <p>全ての投稿を見る</p>
-        <% end %>
-
-      <h2>人気のまち</h2>
-        <% @column_ranks.each do |column_rank| %>
-          <div class="column_rank">
-          <%= attachment_image_tag column_rank ,:image, format: 'jpeg', style:"width:200px; height:auto;" %>
-          <%= column_rank.column.name %>
-          </div>
-        <% end %>
-
-        <% link_to cities_path do %>
-          <p>全ての街を見る</p>
-        <% end %>
+      </div>
 
     </div>
   </div>
-</container>
+
+  <div class="row">
+    <div class="col">
+
+      <div class="top_title_else">
+        <h3 style="padding:3px 30px 0 30px">新着投稿</h3>
+        <p style="padding-top:7px;">
+          <%= image_tag asset_path('yajirusi.png'),style:"width:20px; height:auto;" %>
+          <%= link_to posts_path do %>
+            全ての投稿を見る
+          <% end %>
+        </p>
+      </div>
+
+      <div class="multiple-items_else">
+        <% @posts.each do |post| %>
+          <div class="post">
+            <%= attachment_image_tag post ,:image, format: 'jpeg', style:"width:250px; height:180px;" %>
+            <p style="margin-top:10px;"><%= post.post_name %></p>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+
+
+
+
+<script>
+  $(function() {
+    $('.top_hamburger').click(function() {
+        $(this).toggleClass('active');
+
+        if ($(this).hasClass('active')) {
+            $('.top_globalMenuSp').addClass('active');
+        } else {
+            $('.top_globalMenuSp').removeClass('active');
+        }
+
+    });
+  });
+
+  $(function() {
+      $('.top_globalMenuSp a[href]').click(function() {
+          $('.top_globalMenuSp').removeClass('active');
+         $('.top_hamburger').removeClass('active');
+
+      });
+    });
+
+</script>
+
+
+

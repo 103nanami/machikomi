@@ -1,0 +1,91 @@
+<conainer>
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+
+    <div class="title_mypage">
+      <h4>マイページ</h4>
+      <div class="btn">
+        <%= link_to "MY投稿一覧", users_posts_path, class:"btn btn-outline-danger", style:"width:200px" %>
+        <%= link_to "MYお気に入り一覧", users_favorites_path, class:"btn btn-outline-danger", style:"width:200px" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+
+    <div class="col-lg-8">
+      <table>
+        <tr>
+          <th style="padding:30px 50px 0 0">名前</th>
+          <td style="padding:30px 0 0 50px"><%= current_user.last_name %> <%= current_user.first_name %></td>
+        </tr>
+
+        <tr>
+          <th style="padding:30px 50px 0 0">フリガナ</th>
+          <td style="padding:30px 0 0 50px"><%= current_user.last_name_kana %> <%= current_user.first_name_kana %></td>
+        </tr>
+
+        <tr>
+          <th style="padding:30px 50px 0 0">ユーザーネーム</th>
+          <td style="padding:30px 0 0 50px"><%= current_user.username %></td>
+        </tr>
+
+        <tr>
+          <th style="padding:30px 50px 0 0">メールアドレス</th>
+          <td style="padding:30px 0 0 50px"><%= current_user.email %></td>
+        </tr>
+
+        <tr>
+          <th style="padding:30px 50px 0 0">性別</th>
+          <td style="padding:30px 0 0 50px">
+            <% if current_user.sex == 1 %>
+             女性
+            <% else %>
+             男性
+            <% end %>
+          </td>
+        </tr>
+
+        <tr>
+          <th style="padding:30px 50px 0 0">生年月日</th>
+          <td style="padding:30px 0 0 50px">
+            <%= current_user.birth_year %>年
+            <%= current_user.birth_month %>月
+            <%= current_user.birth_day %>日
+          </td>
+        </tr>
+
+        <tr>
+          <th style="padding:30px 50px 0 0">年齢</th>
+          <td style="padding:30px 0 0 50px"><%= current_user.old %>歳</td>
+        </tr>
+
+        <tr>
+          <th style="padding:30px 50px 0 0">住所</th>
+          <td style="padding:30px 0 0 50px">
+            〒<%= current_user.postal_code %></br>
+            <%= current_user.address %>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+
+    <div class="col-lg-2">
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="btn-link">
+      <%= link_to "変更",edit_user_path(current_user.id), class:"btn btn-outline-info" ,style:"margin:0 0 0 55px; width:200px;" %>
+      <%= link_to "退会",users_confirm_path, class:"btn btn-outline-info" ,style:"margin:0 0 0 55px; width:200px;" %>
+    </div>
+  </div>
+</conainer>
+
+

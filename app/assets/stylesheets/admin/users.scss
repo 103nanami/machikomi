@@ -1,3 +1,20 @@
 // Place all the styles related to the admin/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.mycolumns_all{
+  width: 950px;
+  margin: 0 auto 80px auto;
+}
+
+.user_title{
+  margin: 50px 0 20px 0;
+  border-bottom: solid 3px #e5e5e5;
+  padding: 0 0 20px 50px;
+}
+
+.search_container {
+  box-sizing: border-box;
+  margin: 50px auto 80px auto;
+  width: 400px;
+}

@@ -1,0 +1,13 @@
+<% if column.favorited_by?(current_user) %>
+  <p>
+    <%= link_to column_column_favorites_path(column), method: :delete, remote: true, class:"btn btn-outline-danger",style:"width:150px;" do %>
+      <%= image_tag asset_path('favorite.png'),style:"width:20px;" %><%= column.column_favorites.count %> いいね
+    <% end %>
+  </p>
+<% else %>
+  <p>
+    <%= link_to column_column_favorites_path(column), method: :post, remote: true, class:"btn btn-outline-danger",style:"width:150px;" do %>
+      <%= image_tag asset_path('not_favorite.png'),style:"width:20px;" %><%= column.column_favorites.count %> いいね
+    <% end %>
+  </p>
+<% end %>

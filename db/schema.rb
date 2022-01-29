@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_04_124652) do
+ActiveRecord::Schema.define(version: 2022_01_29_043812) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 2022_01_04_124652) do
     t.integer "column_id"
   end
 
+  create_table "column_favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "column_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "columns", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -48,10 +55,9 @@ ActiveRecord::Schema.define(version: 2022_01_04_124652) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "favorites", force: :cascade do |t|
+  create_table "post_favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
-    t.integer "column_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -88,6 +94,7 @@ ActiveRecord::Schema.define(version: 2022_01_04_124652) do
     t.string "first_name"
     t.string "last_name_kana"
     t.string "first_name_kana"
+    t.string "username"
     t.string "postal_code"
     t.string "address"
     t.string "sex"
@@ -95,6 +102,7 @@ ActiveRecord::Schema.define(version: 2022_01_04_124652) do
     t.string "birth_year"
     t.string "birth_month"
     t.string "birth_day"
+    t.string "image_id"
     t.boolean "is_active", default: true, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

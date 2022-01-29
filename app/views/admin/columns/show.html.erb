@@ -5,20 +5,23 @@
 
     <div class="col-lg-8">
       <div class="admin_title_box">
-        <h4 class="admin_title"><%= @column.title %></h4>
+        <div class="admin_title">
+          <h4 class="admin_title_text"><p style="font-weight:bold; padding-right:20px;">[<%= @column.city.name %>]</p><%= @column.title %></h4>
+        </div>
       </div>
 
       <div class="column_main_box">
-        <%= attachment_image_tag @column, :image, style:"width:600px; height:auto;" %>
 
-        <div class="column_text">
-          <%= @column.text %>
+        <%= attachment_image_tag @column, :image, style:"width:600px; height:auto; margin:50px auto" %>
+
+        <div class="ad_column_text", style="margin-bottom:50px;">
+          <%= safe_join(@column.text.split("\n"),tag(:br)) %>
         </div>
 
         <div class="button">
           <%=link_to "編集" ,edit_admin_column_path(@column.id),method: :GET, class:"btn btn-info" ,style:"width:120px" %>
-          <%=link_to "削除", admin_column_path(@column),method: :delete, class:"btn btn-danger" ,style:"width:120px" %>
-        </div>
+          <%=link_to "削除", admin_column_path(@column), method: :delete, class:"btn btn-danger" ,style:"width:120px" %>
+          <%#=link_to "削除", admin_columns_confirm_path, method: :GET, class:"btn btn-danger" ,style:"width:120px" %>
       </div>
     </div>
 

@@ -11,27 +11,35 @@ Rails.application.routes.draw do
     get '/' => 'homes#top'
     resources :cities, only:[:index]
     resources :columns, only:[:index, :show] do
-      resource :favorites, only: [:create, :destroy]
+      resource :column_favorites, only: [:create, :destroy]
     end
     get '/spots' => 'posts#spot'
     resources :posts do
-      resource :favorites, only: [:create, :destroy]
+      resource :post_favorites, only: [:create, :destroy]
       resource :comments, only: [:create]
       resource :comments, only: [:destroy]
     end
+    resources :posts, params: :city_id, only: [:index]
+
     get '/users/posts' => 'users#post'
     get '/users/favorites' => 'users#favorite'
     get '/users/confirm' => 'users#confirm'
     get '/users/withdraw' => 'users#withdraw'
-    get '/users/my_page' => 'users#show'
+    get '/users/my_page' => 'users#my_page'
     resources :users, only:[:edit, :update]
   end
 
   namespace :admin do
     get '/' => 'homes#top'
+    get 'users/posts' => 'users#post'
     resources :users, only:[:index, :show]
-    get '/columns/confirm' => 'columns#confirm'
-    resources :columns, only:[:show, :new, :create, :edit, :update, :destroy]
+    get 'posts/confirm' => 'posts#confirm'
+    resources :posts, only:[:show, :destroy]
+    resources :columns, only:[:show, :new, :create, :edit, :update, :destroy] do
+      collection do
+        get 'search'
+      end
+    end
   end
 
 

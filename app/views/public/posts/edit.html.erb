@@ -1,13 +1,30 @@
 <container>
 
-  <%= form_with model: @post, url:post_path(@post), method: :GET, local:true do |f| %>
+  <%= form_with model: @post, url:post_path(@post), method: :patch, local:true do |f| %>
     <div class="row">
-      <div class="col-lg-12 mx-auto">
-        <table>
+      <div class="col-lg 3">
+      </div>
+
+      <div class="col-lg-6 mx-auto">
+
+        <% if @post.errors.any? %>
+        <div class="error_mess_all">
+          <div class="error_mess_title">
+            <h5><%= @post.errors.count %>件のエラーが発生しました</h5>
+          </div>
+          <div class="error_mess">
+            <% @post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+
+        <table style="margin-top:50px;">
           <tr>
-            <td class="table_text">
-              <%= attachment_image_tag @post, :image %></br>
-              画像を選択　<%= f.attachment_field :image %>
+            <td class="table_image">
+              <%= attachment_image_tag @post, :image, style:"width:100px;" %>
+              <%= f.attachment_field :image %>
             </td>
           </tr>
 
@@ -20,18 +37,81 @@
           </tr>
 
           <tr>
-            <td class="table_title">街</td>
-            <td class="table_text"></td>
+            <td class="table_text"><%= f.select :city_id, @cities.map{ |city| [city.name, city.id] } %></td>
           </tr>
 
         </table>
       </div>
+
+      <div class="col-lg 3">
+      </div>
     </div>
 
     <div class="row">
-      <div class="button">
-        <%=f.submit "編集を確定", class:"btn btn-info" ,style:"width:120px" %>
+      <div class="col-lg 3">
+      </div>
+
+      <div class="col-lg-6 mx-auto">
+
+        <div id="map"></div>
+        <p class="map_caption"><%= image_tag asset_path('mappin.png'),style:"width:20px; height:auto;" %>ピンの場所をドラックして変更</p>
+
+        <script>
+          var map;
+          function initMap() {
+            var target = document.getElementById('map');
+            var empire = {lat: <%= @post.lat ||= 35.6802117 %>, lng: <%= @post.lng ||=139.7576692 %>};
+
+            map = new google.maps.Map(target, {
+              center: empire,
+              zoom: 14
+            });
+
+          var marker = new google.maps.Marker({
+            position: empire,
+            draggable: true,
+            map: map,
+           });
+
+          google.maps.event.addListener(marker, 'dragend', function(e) {
+            //イベントの引数eの、プロパティ.latLngがmarkerの緯度経度。
+            var pos = marker.getPosition();
+            var lat = pos.lat();
+            var lng = pos.lng();
+
+            $("#post_lat").val(lat);
+            $("#post_lng").val(lng);
+
+           });
+          }
+          google.maps.event.addDomListener(window, 'load', initMap);
+
+        </script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5wzr3646rP2VFEUQPF-N-SoeyYBPhK-U&callback=initMap&v=weekly" async></script>
+
+      </div>
+
+      <div class="col-lg 3">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg 3">
+      </div>
+
+      <div class="col-lg-6 mx-auto">
+        <div class="button">
+          <%= f.hidden_field :lat %>
+          <%= f.hidden_field :lng %>
+          <%=f.submit "編集を確定", class:"btn btn-info" ,style:"width:120px" %>
+        </div>
+      </div>
+
+      <div class="col-lg 3">
       </div>
     </div>
   <% end %>
 </container>
+
+

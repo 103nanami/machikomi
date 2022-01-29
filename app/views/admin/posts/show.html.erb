@@ -1,0 +1,85 @@
+<container>
+  <div class="row">
+    <div class="col-lg-1">
+    </div>
+
+    <dv class="col-lg-6">
+
+      <div class="posts_all", style="margin-bottom:80px;">
+        <div class="post_title_box">
+          <h4 class="post_title" style="margin-bottom:20px;"><%= @post.post_name %></h4>
+        </div>
+
+
+        <div class="post_main_box">
+          <%= attachment_image_tag @post, :image, style:"width:600px; height:auto;" %>
+          <div class="post_detail">
+            <p style="margin-top:10px;">
+              <%= @post.created_at.strftime("%Y-%m-%d(%a)") %>
+              <%= image_tag 'mappin.png',style:"width:20px; margin-left:20px;" %><%= @post.city.name %>
+            </p>
+
+          </div>
+          <div class="post_text">
+            <p><%= @post.post_text %></p>
+          </div>
+        </div>
+
+        <div id="googlemap"></div>
+
+      </div>
+
+
+    </dv>
+
+    <div class="col-lg-4">
+      <div class="comment", style="margin-bottom:100px;">
+
+          <p style="margin-top:20px">コメント件数：<%= @post.comments.count %></p>
+          <div class="comment_all">
+            <table>
+              <% @post.comments.each do |comment| %>
+                <tr>
+                  <td><p style="padding-right:20px; font-size:20px;"><%= comment.user.username %><p></td>
+                  <td><p style="padding-right:20px; font-weight:normal;"><%= comment.created_at.strftime('%Y/%m/%d') %> :</p></td>
+                  <td><p style="padding-right:20px;"><%= comment.comment %></p></td>
+                  <td>
+                    <% if comment.user == current_user %>
+                      <p><%= link_to "削除", post_comments_path(@post), method: :delete ,style:"margin-bottom:1rem;" %></p>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+        </div>
+    </div>
+
+    <div class="col-lg-1">
+    </div>
+
+  </div>
+</container>
+
+<script>
+    var map;
+    function initMap() {
+    var target = document.getElementById('googlemap');
+    var empire = {lat: <%= @post.lat ||= 35.6802117 %>, lng: <%= @post.lng ||=139.7576692 %>};
+
+    map = new google.maps.Map(target, {
+      center: empire,
+      zoom: 14
+    });
+
+    var marker = new google.maps.Marker({
+        position: {lat: <%= @post.lat ||= 35.6802117 %>, lng: <%= @post.lng ||=139.7576692 %>},
+        map: map,
+    });
+
+    };
+    google.maps.event.addDomListener(window, 'load', initMap);
+
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5wzr3646rP2VFEUQPF-N-SoeyYBPhK-U&callback=initMap&v=weekly" async></script>

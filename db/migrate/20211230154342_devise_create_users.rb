@@ -39,6 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :first_name
       t.string :last_name_kana
       t.string :first_name_kana
+      t.string :username
       t.string :postal_code
       t.string :address
       t.string :sex
@@ -46,6 +47,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :birth_year
       t.string :birth_month
       t.string :birth_day
+      t.string :image_id
       t.boolean :is_active, default: true, null: false
 
     end

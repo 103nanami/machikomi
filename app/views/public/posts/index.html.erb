@@ -3,35 +3,66 @@
     <div class="col-lg-1">
     </div>
 
-    <div class="col-lg-2">
-      <div class="city_button">
-        <%= link_to "街から探す", cities_path, class:"btn btn-info" ,style:"width:120px" %>
+    <div class="col-lg-3">
+      <div class="linkmap">
+        <%= link_to "地図から探す",spots_path, class:"btn btn-outline-danger", style:"width:200px; padding:10px 0; font-weight:bold; margin-top:50px;" %>
+      </div>
+
+      <div class="city_all">
+        <div class="select_title">
+          <p>まちから探す</p>
+        </div>
+
+        <div class="select_col">
+          <% @cities.each do |city| %>
+            <%= link_to posts_path(city_id: city.id) do %>
+              <p><%= city.name %></p>
+            <% end %>
+          <% end %>
+          <%= link_to posts_path do %>
+          <p>＞すべての投稿</p>
+          <% end %>
+        </div>
       </div>
 
       <div class="recomend">
-        <p class="recomend_title">おすすめの投稿</p>
-        <div class="recomend_post">
+        <div class="recomend_title">
+          <p>おすすめの投稿</p>
+        </div>
+
+        <div class="recomend_post_box">
           <% @post_ranks.each do |post_rank| %>
-            <%= link_to post_path(post_rank) do %>
-              <%= attachment_image_tag post_rank, :image, style:"width:150px; height:auto;" %>
-            <% end %>
-            <%= post_rank.post.post_name %>
+            <div class="recomend_post">
+              <%= link_to post_path(post_rank) do %>
+                <%= attachment_image_tag post_rank, :image, style:"width:150px; height:auto;" %>
+              <% end %>
+              <p style="padding-left:15px;"><%= post_rank.post_name %></p>
+            </div>
           <% end %>
         </div>
       </div>
     </div>
 
-    <div class="col-lg-7">
-      <div class="post_all">
+    <div class="col-lg-7" id="post_all">
+
+      <div class="card-columns">
         <% @posts.each do |post| %>
-        <div class="post">
-          <%= link_to post_path(post.id) do %>
-            <%= attachment_image_tag post, :image, style:"width:300px; height:auto;" %>
-          <% end %>
-          <%= post.post_name %>
+        <div class="card">
+          <div class="card-img-top">
+            <%= link_to post_path(post.id) do %>
+              <%= attachment_image_tag post, :image, style:"width:300px; height:200px;" %>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <p><%= post.post_name %></p>
+            <p><%= image_tag asset_path('mappin.png'),style:"width:20px;" %><%= post.city.name %></p>
+          </div>
         </div>
         <% end %>
       </div>
+
+      <div style="margin:20px 0 80px 0;"><%= paginate @posts %></div>
+
     </div>
 
     <div class="col-lg-1">

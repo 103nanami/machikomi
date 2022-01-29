@@ -1,2 +1,19 @@
-<h1>Public::Users#confirm</h1>
-<p>Find me in app/views/public/users/confirm.html.erb</p>
+<container>
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+
+    <div class="col-lg-8">
+      <div class="confirm_withdraw">
+        <h3>退会しますか?</h3>
+        <p>これまでの投稿やお気に入りデータが削除されます。</p>
+        <p>よろしいですか？</p>
+        <%= link_to "退会を確定",users_withdraw_path, class:"btn btn-outline-danger" ,style:"margin-top:50px; width:200px;" %>
+      </div>
+    </div>
+
+    <div class="col-lg-2">
+    </div>
+
+  </div>
+</container>

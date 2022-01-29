@@ -1,6 +1,10 @@
 <container>
   <div class="row">
-    <div class="col-lg-12 mx-auto">
+
+    <div class="col-lg-2">
+    </div>
+
+    <div class="col-lg-8">
 
       <div class="tabs">
 
@@ -12,25 +16,71 @@
 
         <div class="tab_content" id="all_content">
           <div class="tab_content_description">
-            <%=  @favorite_post_lists.each do |favorite_post_list| %>
-              <%= attachment_image_tag favorite_post_list, :image %>
-              <%= favorite_post_list.post_name %>
-              <%= favorite_post_list.post_text %>
+
+            <% if @post_favorites.present? %>
+
+              <div class="card-columns">
+                <% @post_favorites.each do |post_favorite| %>
+                <div class="card">
+                  <div class="mypost_img">
+                    <%= link_to post_path(post_favorite) do %>
+
+                      <%= attachment_image_tag post_favorite, :image ,style:"width:300px; height:200px;"%>
+                    <% end %>
+                  </div>
+                  <div class="card-body">
+                    <p><%= post_favorite.post_name %></p>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+
+            <% else %>
+
+             <p>お気に入りした投稿はありません</p>
+
             <% end %>
+
           </div>
         </div>
 
         <div class="tab_content" id="programming_content">
           <div class="tab_content_description">
-            <%= @favorite_column_lists.each do |favorite_column_list| %>
-              <%= attachment_image_tag favorite_column_list, :image %>
-              <%= favorite_column_list.post_name %>
-              <%= favorite_column_list.post_text %>
+
+            <% if @column_favorites.present? %>
+
+              <div class="card-columns">
+                <% @column_favorites.each do |column| %>
+                <div class="card">
+                  <div class="mypost_img">
+                    <%= link_to column_path(column) do %>
+                      <%= attachment_image_tag column, :image ,style:"width:300px; height:200px;"%>
+                    <% end %>
+                  </div>
+                  <div class="card-body">
+                    <p><%= column.title %></p>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+
+            <% else %>
+
+             <p>お気に入りしたまちはありません</p>
+
             <% end %>
+
           </div>
         </div>
 
       </div>
+
+      <div style="margin:20px;"><%= paginate @posts %></div>
+
+  </div>
+
+    <div class="col-lg-2">
+    </div>
 
   </div>
 </container>

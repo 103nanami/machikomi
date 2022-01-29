@@ -1,16 +1,57 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-2">
+<header id="user_header">
+  <div class="nav">
+
+    <div class="logo">
+      <%= link_to new_user_session_path, class:"link_to" do %>
+        <p class="navlogo">まちコミ</p>
+      <% end %>
     </div>
 
-    <div class="col-lg-6">
-      <h3 class="page_title">新規会員登録</h3>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav class="globalMenuSp">
+      <ul>
+        <li class="nav-item">
+          <%= link_to "新規登録", new_user_registration_path, class:"link_to" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログイン", new_user_session_path, class:"link_to" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "投稿一覧", posts_path, class:"link_to" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "街のコラム", columns_path, class:"link_to" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "管理者はこちら", new_admin_session_path, class:"link_to" %>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 mx-auto">
+      <h3 style="text-align:center; padding:80px 0 20px 0;">会員登録</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="info", style="width:400px; margin:50px auto 20px auto;">
+      <p style="font-weight:200;">会員登録がお済みの方は、<%= link_to "こちら",new_user_session_path %>からログイン</p>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-10">
-
 
       <%#= form_for(Customer.new, url: customer_registration_path) do |f| %>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -30,10 +71,21 @@
         </tr>
 
         <tr>
+          <th><label>ユーザーネーム</label></th>
+          <td><%= f.text_field :username, autofocus: true, placeholder: "ひらがな、カタカナ、英数字、@、_の", style:"width:250px;"  %></td>
+        </tr>
+
+
+        <tr>
+          <th><label>性別</label></th>
+          <td><%= f.select :sex, [['女性',1],['男性',2]] %></td>
+        </tr>
+
+        <tr>
           <th><label>生年月日</label></th>
           <td>
             <%= f.select :birth_year, *[1980..2010], autofocus: true %>年
-            <%= f.select :birth_year, *[1..12], autofocus: true %>月
+            <%= f.select :birth_month, *[1..12], autofocus: true %>月
             <%= f.select :birth_day, *[1..31], autofocus: true %>日
           </td>
         </tr>
@@ -73,7 +125,7 @@
         <tr>
           <th></th>
           <td>
-            <%= f.submit "新規登録",class:"btn btn-success" ,style:"margin:0 0 0 55px; width:250px;" %>
+            <%= f.submit "新規登録",class:"btn btn-outline-info" ,style:"margin:50px 0 100px 55px; width:250px;" %>
           </td>
         </tr>
       <% end %>
@@ -81,3 +133,26 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(function() {
+    $('.hamburger').click(function() {
+        $(this).toggleClass('active');
+
+        if ($(this).hasClass('active')) {
+            $('.globalMenuSp').addClass('active');
+        } else {
+            $('.globalMenuSp').removeClass('active');
+        }
+
+    });
+});
+
+$(function() {
+    $('.globalMenuSp a[href]').click(function() {
+        $('.globalMenuSp').removeClass('active');
+       $('.hamburger').removeClass('active');
+
+    });
+  });
+</script>

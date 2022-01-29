@@ -1,3 +1,48 @@
 // Place all the styles related to the public/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.title_mypage{
+  display: flex;
+  margin-top: 50px;
+  border-bottom: solid 3px #e5e5e5;
+  width: 70%;
+}
+
+.title_mypage h4{
+
+}
+
+.btn-light{
+  border: solid black;
+}
+
+.btn{
+ margin: 0 0 0 auto;
+}
+
+.btn-link{
+  margin: 50px auto;
+}
+
+.card{
+  margin: 50px 20px 0 0;
+  display:block;
+  align-content: space-around;
+}
+
+.confirm_withdraw{
+  text-align: center;
+}
+
+.confirm_withdraw h3{
+  padding: 100px 0 50px 0;
+}
+
+.confirm_withdraw p{
+  padding: 10px 0;
+}
+
+.my_post_all{
+  margin: 0  auto;
+  width: 950px;
+}

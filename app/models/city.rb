@@ -1,5 +1,5 @@
 class City < ApplicationRecord
-
-  belongs_to :post, optional: true
-  has_one :columns
+  
+  has_many :posts, dependent: :destroy
+  has_one :column
 end

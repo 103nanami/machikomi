@@ -1,10 +1,22 @@
 class Public::PostsController < ApplicationController
+
+  layout 'user'
+
+  before_action :authenticate_user!,except: [:index]
+
   def index
-    @posts = Post.all
-    @post_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
+    @cities = City.all
+    @post_ranks = Post.find(PostFavorite.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
 
-    #@gear = Gear.where(post_id: @post.id, city_id: city.id)
+    if params[:city_id]
 
+      @city = City.find(params[:city_id])
+
+      @posts = @city.posts.page(params[:page]).per(12)
+    else
+
+      @posts = Post.page(params[:page]).per(12)
+    end
   end
 
   def new
@@ -13,30 +25,39 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-
-    post = Post.new(post_params)
-    post.save
-    redirect_to posts_path
+    @cities = City.all
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    if @post.save
+      redirect_to posts_path
+    else
+      render :new
+    end
   end
 
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @post_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
+    @post_ranks = Post.find(PostFavorite.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
+    @cities = City.all
   end
 
   def edit
     @post = Post.find(params[:id])
+    @cities = City.all
   end
 
   def update
-    post = Post.find(params[:id])
-    post.update
-    redirect_to posts_path
+    @cities = City.all
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to posts_path
+    else
+      render :edit
+    end
   end
 
   def spot
-    #@posts = Post.all
     @posts = Post.where(params[:lat]).where(params[:lng])
   end
 

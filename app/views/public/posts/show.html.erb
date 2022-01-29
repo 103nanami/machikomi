@@ -3,83 +3,109 @@
     <div class="col-lg-1">
     </div>
 
-    <div class="col-lg-2">
-      <div class="city_button">
-        <%= link_to "街から探す", cities_path, class:"btn btn-info" ,style:"width:120px" %>
+    <div class="col-lg-3">
+      <div class="city_all">
+        <div class="select_title">
+          <p>まちから探す</p>
+        </div>
+
+        <% @cities.each do |city| %>
+          <div class="select_col">
+            <%= link_to posts_path do %>
+              <p><%= city.name %></p>
+            <% end %>
+          </div>
+        <% end %>
       </div>
 
       <div class="recomend">
-        <p class="recomend_title">おすすめの投稿</p>
-        <div class="recomend_post">
+        <div class="recomend_title">
+          <p>おすすめの投稿</p>
+        </div>
+
+        <div class="recomend_all">
           <% @post_ranks.each do |post_rank| %>
-            <%= link_to post_path(post_rank) do %>
-              <%= attachment_image_tag post_rank, :image, style:"width:150px; height:auto;" %>
-            <% end %>
-            <%= post_rank.post.post_name %>
+            <div class="recomend_post">
+              <%= link_to post_path(post_rank) do %>
+                <%= attachment_image_tag post_rank, :image, style:"width:150px; height:auto;" %>
+              <% end %>
+              <p style="padding-left:15px;"><%= post_rank.post_name %></p>
+            </div>
           <% end %>
         </div>
       </div>
     </div>
 
-    <dv class="col-lg-7">
+    <dv class="col-lg-8">
 
-      <div class="post_title_box">
-        <h4 class="post_title"><%= @post.post_name %></h4>
-      </div>
+      <div class="posts_all">
+        <div class="post_title_box">
+          <h4 class="post_title" style="margin-bottom:20px;"><%= @post.post_name %></h4>
+        </div>
 
-      <div class="favorite">
-        <% if @post.favorited_by?(current_user) %>
-          <p>
-            <%= link_to post_favorites_path(@post), method: :delete do %>
-              ♥<%= @post.favorites.count %> いいね
-            <% end %>
-          </p>
-        <% else %>
-          <p>
-            <%= link_to post_favorites_path(@post), method: :post do %>
-              ♡<%= @post.favorites.count %> いいね
-            <% end %>
-          </p>
+        <% if user_signed_in? && current_user.id == @post.user.id %>
+          <div class="current_user_show">
+            <div class="current_user_show_btn">
+             <%= link_to "投稿を編集",edit_post_path(@post),class:"btn btn-outline-info",style:"margin-right:10px;" %>
+             <%= link_to "投稿を削除",post_path(@post),method: :delete,class:"btn btn-outline-danger",style:"margin-left:10px;" %>
+            </div>
+          </div>
         <% end %>
-      </div>
 
-      <div class="post_main_box">
-        <%= attachment_image_tag @post, :image, style:"width:600px; height:auto;" %>
-        <div class="post_text">
-          <%= @post.post_text %>
+
+        <div class="post_main_box">
+          <%= attachment_image_tag @post, :image, style:"width:600px; height:auto;" %>
+          <div class="post_detail">
+            <p style="margin-top:10px;">
+              <%= @post.created_at.strftime("%Y-%m-%d(%a)") %>
+              <%= image_tag asset_path('mappin.png'),style:"width:20px; margin-left:20px;" %><%= @post.city.name %>
+            </p>
+            <div class="favorite" id="favorite_render", style="margin:5px 0 0 230px;">
+              <%= render 'favorite', post: @post %>
+            </div>
+          </div>
+          <div class="post_text">
+            <%= safe_join(@post.post_text.split("\n"),tag(:br)) %>
+          </div>
         </div>
 
         <div id="googlemap"></div>
 
-
-        <div class="comment_all">
-          <p>コメント件数：<%= @post.comments.count %></p>
-          <% @post.comments.each do |comment| %>
-            <p><%= image_tag('sample-author1.jpg') %></p>
-            <%= comment.user.name %>
-            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-            <% if comment.user == current_user %>
-              <div>
-                <%= link_to "削除", post_comments_path(@post), method: :delete %>
-              </div>
+        <div class="comment", style="margin-bottom:100px;">
+          <div class="do_comment">
+            <%= form_with(model:[@post, @comment],url:post_comments_path(@post), method: :POST, local: true) do |f| %>
+            <div class="comment_here">
+              <%= f.text_area :comment ,placeholder: "コメント", size: "60x5" %>
+            </div>
+            <div class="comment_button">
+              <%= f.submit "送信", class:"btn btn-outline-secondary", style:"width:150px;" %>
+            </div>
             <% end %>
-          <% end %>
+          </div>
+
+          <p style="margin-top:20px">コメント件数：<%= @post.comments.count %></p>
+          <div class="comment_all">
+            <table>
+              <% @post.comments.each do |comment| %>
+                <tr>
+                  <td><p style="padding-right:20px; font-size:20px;"><%= comment.user.username %><p></td>
+                  <td><p style="padding-right:20px; font-weight:normal;"><%= comment.created_at.strftime('%Y/%m/%d') %> :</p></td>
+                  <td><p style="padding-right:20px;"><%= comment.comment %></p></td>
+                  <td>
+                    <% if comment.user == current_user %>
+                      <p><%= link_to "削除", post_comments_path(@post), method: :delete ,style:"margin-bottom:1rem;" %></p>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
         </div>
 
-        <%= form_with(model:[@post, @comment],url:post_comments_path(@post), method: :POST, local: true) do |f| %>
-        <div class="comment_here">
-          <%= f.text_area :comment ,placeholder: "コメントをここに", style:"width:500px height:200px;" %>
-        </div>
-        <div class="comment_button">
-          <%= f.submit "送信する" %>
-        </div>
-        <% end %>
       </div>
 
-    </dv>
 
-    <div class="col-lg-1">
-    </div>
+    </dv>
 
   </div>
 </container>
@@ -88,7 +114,7 @@
     var map;
     function initMap() {
     var target = document.getElementById('googlemap');
-    var empire = {lat: 35.689614, lng: 139.691585};
+    var empire = {lat: <%= @post.lat ||= 35.6802117 %>, lng: <%= @post.lng ||=139.7576692 %>};
 
     map = new google.maps.Map(target, {
       center: empire,
